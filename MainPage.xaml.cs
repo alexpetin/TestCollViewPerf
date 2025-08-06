@@ -9,17 +9,33 @@ namespace TestCollViewPerf
         {
             SetGroupedCommand = new Command(() =>
             {
+                var now = DateTime.Now;
                 IsGrouped = true;
                 CollectionItems = Enumerable.Range(0, 1000)
                     .GroupBy(i => i / 20).ToList();
+                SetActionTime(now);
             });
             SetUnGroupedCommand = new Command(() =>
             {
+                var now = DateTime.Now;
                 IsGrouped = false;
                 CollectionItems = Enumerable.Range(0, 1000).ToList();
+                SetActionTime(now);
             });
-            Set4ColumnsCommand = new Command(() => CVColumns = 4);
-            Set6ColumnsCommand = new Command(() => CVColumns = 6);
+            Set4ColumnsCommand = new Command(() =>
+            {
+                var now = DateTime.Now;
+                CVColumns = 4;
+                SetActionTime(now);
+            });
+            Set6ColumnsCommand = new Command(() =>
+            {
+                var now = DateTime.Now;
+                CVColumns = 6;
+                SetActionTime(now);
+            });
+            void SetActionTime(DateTime now) =>
+                ActionTime = (DateTime.Now - now).TotalSeconds;
 
             BindingContext = this;
             InitializeComponent();
@@ -63,6 +79,13 @@ namespace TestCollViewPerf
             set { collViewItemsCount = value; OnPropertyChanged(); }
         }
         private int collViewItemsCount;
+
+        public double ActionTime
+        {
+            get => actionTime;
+            set { actionTime = value; OnPropertyChanged(); }
+        }
+        private double actionTime;
 
         public double TotalMemory =>
             GC.GetTotalMemory(false) / 1024.0 / 1024;

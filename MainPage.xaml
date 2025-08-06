@@ -32,7 +32,7 @@
         RowSpacing="10"
         ColumnSpacing="10"
         ColumnDefinitions="*,*"
-        RowDefinitions="Auto,Auto,Auto,*">
+        RowDefinitions="Auto,Auto,Auto,Auto,*">
 
         <Label
             Text="{Binding TotalMemory,
@@ -43,30 +43,36 @@
             Text="{Binding CollViewItemsCount,
                 StringFormat='CV items count: {0}'}" />
 
-        <Button
+        <Label
             Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Text="{Binding ActionTime,
+                StringFormat='Last action duration: {0:0.000} s'}" />
+
+        <Button
+            Grid.Row="2"
             Text="Ungrouped CollView"
             Command="{Binding SetUnGroupedCommand}" />
 
         <Button
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.Column="1"
             Text="Grouped CollView"
             Command="{Binding SetGroupedCommand}" />
 
         <Button
-            Grid.Row="2"
+            Grid.Row="3"
             Text="4 columns CollView"
             Command="{Binding Set4ColumnsCommand}" />
 
         <Button
-            Grid.Row="2"
+            Grid.Row="3"
             Grid.Column="1"
             Text="6 columns CollView"
             Command="{Binding Set6ColumnsCommand}" />
 
         <CollectionView
-            Grid.Row="3"
+            Grid.Row="4"
             Grid.ColumnSpan="2"
             Scrolled="OnScrolled"
             IsGrouped="{Binding IsGrouped}"
