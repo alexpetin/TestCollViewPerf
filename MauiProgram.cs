@@ -17,8 +17,8 @@ namespace TestCollViewPerf
                 .ConfigureMauiHandlers(handlers =>
                 {
 #if IOS
-                    handlers.AddHandler<CollectionView,
-                        Microsoft.Maui.Controls.Handlers.Items2.CollectionViewHandler2>();
+                    //handlers.AddHandler<CollectionView,
+                    //    Microsoft.Maui.Controls.Handlers.Items2.CollectionViewHandler2>();
 #endif
                 });
 
